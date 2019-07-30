@@ -10,9 +10,10 @@ class NN {
             outputSize: 1,
             hiddenLayers: [5, 5]
         });
+        this.log = "";
     }
     train() {
-        return this.net.train(this.inputData, { log: true, iterations: 5000 });
+        return this.net.train(this.inputData, { log: (data)=>{this.log=this.log+"\n"+data}, iterations: 5000 });
     }
     run(data) {
         return this.net.run(data);
@@ -36,8 +37,8 @@ class NN {
             },
             fontSize: '14px',
             radius: '8',
-            width: '400',
-            height: '250'
+            width: window.innerWidth,
+            height: "250"
         };
 
         const size = typeof (network.inputSize) == 'number' && typeof (network.outputSize) == 'number' && network.inputSize > 0 && network.outputSize > 0 ? [network.inputSize, ...network.hiddenLayers, network.outputSize] : false;

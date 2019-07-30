@@ -31,6 +31,27 @@
       <vs-list-item>
         <vs-input-number color="dark" v-model="countOfDoneHomeWork"></vs-input-number>
       </vs-list-item>
+      <vs-list-header color="dark" :title="$t('nnOptions', lang)" />
+      <vs-list-item>
+        inputSize:
+        <vs-input-number color="danger" v-model="nnOptions.inputSize"></vs-input-number>
+      </vs-list-item>
+      <vs-list-item>
+        inputRange:
+        <vs-input-number color="success" v-model="nnOptions.inputRange"></vs-input-number>
+      </vs-list-item>
+      <vs-list-item>
+        outputSize:
+        <vs-input-number color="warning" v-model="nnOptions.outputSize"></vs-input-number>
+      </vs-list-item>
+      <vs-list-item>
+        hiddenLayer1:
+        <vs-input-number color="warning" v-model="nnOptions.hiddenLayer1"></vs-input-number>
+      </vs-list-item>
+      <vs-list-item>
+        hiddenLayer2
+        <vs-input-number color="warning" v-model="nnOptions.hiddenLayer2"></vs-input-number>
+      </vs-list-item>
       <vs-list-item class="net-svg" v-html="toSVG()"></vs-list-item>
     </vs-list>
 
@@ -66,6 +87,7 @@
         type="line"
       >{{ $t('train', lang) }}!</vs-button>
     </vs-divider>
+    <pre v-html="log"></pre>
   </div>
 </template>
 
@@ -86,14 +108,35 @@ export default {
       countOfImportant: 0,
       countOfHomeWork: 0,
       countOfDoneHomeWork: 0,
-      lang: "en"
+      nnOptions: {
+        inputSize: 4,
+        inputRange: 8,
+        outputSize: 1,
+        hiddenLayer1: 5,
+        hiddenLayer2: 5
+      },
+      log: NN.log,
+      lang: "ru"
     };
   },
   watch: {
     countOfLessons: val => (window.countOfLessons = val),
     countOfImportant: val => (window.countOfImportant = val),
     countOfHomeWork: val => (window.countOfHomeWork = val),
-    countOfDoneHomeWork: val => (window.countOfDoneHomeWork = val)
+    countOfDoneHomeWork: val => (window.countOfDoneHomeWork = val),
+    nnOptions: {
+      handler(val) {
+        NN.net = new NN.brain.NeuralNetwork({
+          inputSize: val.inputSize,
+          inputRange: val.inputRange,
+          outputSize: val.outputSize,
+          hiddenLayers: [val.hiddenLayer1, val.hiddenLayer2]
+        });
+        // console.log(val);
+        document.querySelector(".net-svg").innerHTML = NN.toSVG(NN.net);
+      },
+      deep: true
+    }
   },
   methods: {
     prognose: () => {

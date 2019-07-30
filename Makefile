@@ -1,2 +1,2 @@
 all:
-	mv -fv dist docs
+	rm -Rfv docs && mv -fv dist docs
