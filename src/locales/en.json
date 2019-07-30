@@ -1,0 +1,13 @@
+{
+  "title": "Prognose of your School day for tomorrow, using nerual network!",
+  "countOfImportant": "Count Of Important Lessons",
+  "countOfLessons": "Count of Lessons",
+  "countOfHomeWork": "Count of HomeWork",
+  "countOfDoneHomeWork": "Count of Done HomeWork",
+  "prognose": "Prognose",
+  "train": "Train",
+  "trainDone": "Training done!",
+  "prognoseDone": "Prognose done!",
+  "ofSuccess": "of success!",
+  "nnOptions": "NerualNetwork Options"
+}
