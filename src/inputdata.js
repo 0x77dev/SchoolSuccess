@@ -27,6 +27,9 @@ export default [
     { input: [5, 5, 0, 0], output: [0.89] },
     { input: [5, 5, 0, 0], output: [0.89] },
     { input: [4, 6, 3, 0], output: [0] },
+    { input: [4, 4, 4, 0], output: [0] },
+    { input: [5, 5, 5, 0], output: [0] },
+    { input: [2, 2, 2, 0], output: [0] },
     { input: [4, 6, 2, 2], output: [1] },
     { input: [0, 0, 0, 0], output: [0] }
 ];
